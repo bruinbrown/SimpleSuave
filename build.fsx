@@ -29,7 +29,7 @@ Target "StageWebsiteAssets" (fun _ ->
     let shouldInclude (file:string) =
         blacklist
         |> Seq.forall(not << file.Contains)
-    Kudu.stageFolder (Path.GetFullPath @"src\webhost") shouldInclude)
+    Kudu.stageFolder (Path.GetFullPath @"src\SimpleSuave") shouldInclude)
 
 Target "StageWebJob" (fun _ ->
     [ @"src\Sample.fsx" ]
