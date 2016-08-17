@@ -29,17 +29,12 @@ Target "StageWebsiteAssets" (fun _ ->
     let shouldInclude (file:string) =
         blacklist
         |> Seq.forall(not << file.Contains)
-    Kudu.stageFolder (Path.GetFullPath @"src\SimpleSuave") shouldInclude)
-
-Target "StageWebJob" (fun _ ->
-    [ @"src\Sample.fsx" ]
-    |> Kudu.stageWebJob Kudu.WebJobType.Continuous "sample")
+    Kudu.stageFolder (Path.GetFullPath @"SimpleSuave") shouldInclude)
 
 Target "Deploy" Kudu.kuduSync
 
 "StageWebsiteAssets"
 ==> "BuildSolution"
-==> "StageWebJob"
 ==> "Deploy"
 
 
