@@ -16,9 +16,9 @@ let main [| port |] =
 
     let app =
         choose
-            [ GET >=> path "/hello" >=> OK "Hello DevSouthCoast"
+            [ GET >=> path "/hello" >=> OK "Hello DevSouthCoast!"
               pathScan "/hello/%s" (fun name -> OK("Hello " + name)) ]
-
+            
 
     startWebServer config app
 
